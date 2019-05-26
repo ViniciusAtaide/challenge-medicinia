@@ -1,6 +1,8 @@
 {
   "name": "desafio",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular",
   "id": "d4076729"
 }
