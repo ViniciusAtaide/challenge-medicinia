@@ -1,24 +1,29 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      <ion-grid>
-        <ion-row>
-          <ion-col>Listagem de Pacientes</ion-col>
-          <ion-col>
-            <ion-button (click)="logout()"> Logout </ion-button>
-          </ion-col>
-        </ion-row>
-      </ion-grid>
+      Pacientes
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <ion-grid>
-    <ion-row *ngFor="let patient of patients">
+    <ion-row *ngFor="let patient of patients | async">
       <ion-col>
         <ion-item> {{ patient.name }}</ion-item>
       </ion-col>
     </ion-row>
+    <ion-row>
+      <ion-col
+        ><ion-button class="left" (click)="page.next(page.getValue() - 1)">
+          <
+        </ion-button>
+      </ion-col>
+      {{ page.getValue() }}
+      <ion-col
+        ><ion-button (click)="page.next(page.getValue() + 1)"> > </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-button (click)="logout()"> Logout </ion-button>
   </ion-grid>
 </ion-content>

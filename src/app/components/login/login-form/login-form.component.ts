@@ -14,7 +14,7 @@ export class LoginFormComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    public toasController: ToastController
+    public toastController: ToastController
   ) {}
 
   ngOnInit() {}
@@ -28,7 +28,7 @@ export class LoginFormComponent implements OnInit {
   }
 
   async presentError(error) {
-    const toast = await this.toasController.create({
+    const toast = await this.toastController.create({
       message: error,
       duration: 2000
     });

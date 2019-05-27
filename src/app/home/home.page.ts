@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { AuthService } from "../service/auth.service";
 import { PatientService, Patient } from "../service/patient.service";
-import { Observable, from } from "rxjs";
 import { Router } from "@angular/router";
+import { Observable, of, BehaviorSubject } from "rxjs";
 
 @Component({
   selector: "app-home",
@@ -16,12 +16,18 @@ export class HomePage implements OnInit {
     public router: Router
   ) {}
 
-  patients = [{ name: "teste" }, { name: "teste" }, { name: "teste" }];
-  page: number = 1;
-  per: number = 5;
+  page: BehaviorSubject<number> = new BehaviorSubject(1);
+  per: BehaviorSubject<number> = new BehaviorSubject(2);
+  patients: Observable<Patient[]>;
 
   ngOnInit() {
-    this.patient.list(this.page, this.per);
+    this.page.subscribe(
+      page => (this.patients = this.patient.list(page, this.per.getValue()))
+    );
+
+    this.per.subscribe(
+      per => (this.patients = this.patient.list(this.page.getValue(), per))
+    );
   }
 
   logout() {

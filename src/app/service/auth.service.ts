@@ -27,7 +27,7 @@ export class AuthService {
           this.session = {
             token: data.auth.token,
             council_number: data.auth.user.council_number,
-            entity_id: data.auth.user.id
+            entity_id: data.auth.user.entities[0].id
           };
           localStorage.setItem("session", JSON.stringify(this.session));
         })
@@ -54,7 +54,11 @@ type Response = {
     token: string;
     user: {
       council_number: string;
-      id: string;
+      entities: [
+        {
+          id: string;
+        }
+      ];
     };
   };
 };
