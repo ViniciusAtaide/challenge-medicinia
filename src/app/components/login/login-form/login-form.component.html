@@ -1,0 +1,44 @@
+<ion-grid class="container">
+  <form #form="ngForm" (ngSubmit)="login(form)">
+    <ion-row class="ion-align-items-center">
+      <ion-col>
+        <img class="logo" src="/assets/logo/medicinia.png" alt="Medicinia" />
+      </ion-col>
+    </ion-row>
+    <ion-row class="login-form">
+      <ion-col size-md="6" size-xs="12">
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input
+            type="email"
+            name="email"
+            email
+            class="form-control"
+            [(ngModel)]="model.email"
+            id="email"
+            required
+          ></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size-md="6" size-xs="12">
+        <ion-item>
+          <ion-label position="floating">Senha</ion-label>
+          <ion-input
+            type="password"
+            name="password"
+            [(ngModel)]="model.password"
+            aria-placeholder="Senha"
+            class="form-control"
+            id="password"
+            required
+          ></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row padding class="justify-align-items-center">
+      <ion-button type="submit" [disabled]="!form.form.valid">
+        Login
+      </ion-button>
+    </ion-row>
+  </form>
+</ion-grid>
